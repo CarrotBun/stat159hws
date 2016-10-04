@@ -1,0 +1,107 @@
+x---
+title: "HW01 - Basic bash commands"
+subtitle: "Stat 159, Fall 2016"
+author: "Lily Li"
+output: txt_document
+---
+
+> ### Objectives
+>
+> - Work with shell commands
+> - Track your commands
+
+
+Create a text file and name it like `stat159-hw01-first-last.txt` (where "first" and "last" are your first and last names: e.g. `stat159-hw01-gaston-sanchez.txt`).
+Use the text file to write the shell commands for the following instructions:
+
+- Create a directory `stat159-hw01`
+mkdir stat159-hw01
+
+- Change to the directory `stat159-hw01`
+cd ~/stat159-hw01
+
+- Find out how to use the command `curl` to download the following text files:
+	- http://textfiles.com/food/bread.txt
+	curl -o bread.txt http://textfiles.com/food/bread.txt
+
+	- http://textfiles.com/food/btaco.txt
+	curl -o btaco.txt http://textfiles.com/food/btaco.txt
+
+	- http://textfiles.com/food/1st_aid.txt
+	curl -o 1st_aid.txt http://textfiles.com/food/1st_aid.txt
+
+	- http://textfiles.com/food/beesherb.txt
+	curl -o beesherb.txt http://textfiles.com/food/beesherb.txt
+
+- Use the command `curl` to download the following csv files:
+	- http://archive.ics.uci.edu/ml/machine-learning-databases/forest-fires/forestfires.csv
+	curl -o forestfires.csv http://archive.ics.uci.edu/ml/machine-learning-databases/forest-fires/forestfires.csv
+
+	- http://www.math.uah.edu/stat/data/Fisher.csv
+	curl -o Fisher.csv http://www.math.uah.edu/stat/data/Fisher.csv
+
+	- http://web.pdx.edu/~gerbing/data/cars.csv
+	curl -o cars.csv http://web.pdx.edu/~gerbing/data/cars.csv
+
+- Print your working (i.e. current) directory
+pwd
+
+- List the contents in your current directory 
+ls
+
+- List the contents in your current directory in long format, 
+displaying the results in alphabetical order
+ls -l
+
+- Create a directory `data`
+mkdir data
+
+- Change to the directory `data`
+cd data
+
+- Create a directory `txt-files`
+mkdir txt-files
+
+- Create a directory `csv-files`
+mkdir csv-files
+
+- Move the downloaded files with extension `.txt` to the directory `txt-files`
+mv ~/stat159/stat159-hw01/*.txt ~/stat159/stat159-hw01/data/txt-files
+
+- Move the downloaded files with extension `.csv` to the directory `csv-files`
+mv ~/stat159/stat159-hw01/*.csv ~/stat159/stat159-hw01/data/csv-files
+
+- Go back to the parent directory `stat159-hw01`
+cd ../..
+
+- Create a directory `copies`
+mkdir copies
+
+- Copy all the `.txt` files in the directory `copies`
+cp ~/stat159/stat159-hw01/data/txt-files/*.txt ~/stat159/stat159-hw01/copies
+
+- Copy all the `.csv` files in the directory `copies`
+cp ~/stat159/stat159-hw01/data/csv-files/*.csv ~/stat159/stat159-hw01/copies
+
+- Change to the directory `copies`
+cd copies
+
+- Rename the file `Fisher.csv` as `iris.csv`
+mv Fisher.csv iris.csv
+
+- Rename the file `bread.txt` as `bread-recipe.txt`
+mv bread.txt bread-recipe.txt
+
+- Change to the parent directory (i.e. `stat159-hw01`)
+cd ..
+
+- Rename the directory `copies` as `copy-files`
+mv copies copy-files
+
+- Delete the directory `copy-files`
+rm copy-files
+
+- List the contents of the directory `txt-files` displaying the results
+in reverse (alphabetical) order
+cd data/txt-files
+ls -l -r
