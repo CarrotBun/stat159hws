@@ -1,4 +1,4 @@
-# STAT 159 HW02  
+# Advertising
 
 ## Authors  
 Author: Lily Li  
