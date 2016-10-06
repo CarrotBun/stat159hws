@@ -1,0 +1,57 @@
+---
+title: "Advertising Data Report"
+author: "Lily Li"
+date: "October 7, 2016"
+output: pdf_document
+---
+## Abstract  
+This reports attempts to reproduce the results of advertising and sales found in section 3.1 Simple Linear Regression of [*An Introduction to Statistical Learning*](http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Sixth%20Printing.pdf). 
+  
+---  
+  
+## Introduction  
+The Advertising dataset contains data on sales (in thousands of units) for a particular product as a function of advertising budgets (in thousands of dollars) for TV, radio, and newspaper media. The goal is to suggest, on the basis of this data, a marketing plan for next year that will results in high product sales. In this report, we will focus specifcally on the TV budget and its relationship with sales. Some questions we would like to explore include:      
+1. What are the average TV ads budget and average sales in this dataset?  
+2. Is there a relationship between TV ads budget and sales?  
+3. How strong is the relationship?  
+4. Is the relationship linear?  
+  
+---  
+  
+## Data
+```{r}
+setwd("~/stat159/hw/stat159-fall2016-hw02/report")
+read.table("~/stat159/hw/stat159-fall2016-hw02/data/eda-output.txt",
+           sep = " ",
+           col.names = c("Mean", "SD", "Median", "Min", "Max", "N"),
+           fill = TRUE,
+           skip = 3)
+```  
+---  
+  
+## Methodology
+
+  
+---  
+  
+## Results
+
+
+  
+---  
+  
+## Conclusions
+
+
+
+
+  
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

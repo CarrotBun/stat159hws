@@ -1,7 +1,7 @@
-Summary Statistics of TV ads on Sales
-
+Statistics of TV Budget
       Mean       SD Median Min   Max   N
 1 147.0425 85.85424 149.75 0.7 296.4 200
 
+Statistics of TV Budget
      Mean       SD Median Min Max   N
 1 14.0225 5.217457   12.9 1.6  27 200

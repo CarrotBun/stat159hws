@@ -2,16 +2,12 @@
 setwd("~/stat159/hw/stat159-fall2016-hw02/code")
 
 # load necessary packages and libraries
-install.packages("ggplot2")
-install.packages("reader")
-install.packages("stats")
-install.packages("ggplot2")
-install.packages("broom")
+#install.packages("ggplot2", repos="http://cran.rstudio.com/")
+#install.packages("reader", repos="http://cran.rstudio.com/")
+
 library(ggplot2)
-library(reader)
-library(stats)
-library(ggplot2)
-library(broom)
+#library(stats)
+
 
 # read data
 data = read.csv("../data/Advertising.csv")
@@ -25,9 +21,6 @@ reg_TV.Sales = lm(Sales~TV, data = data)
 # full regression summary with 5 summary statistics
 reg_full_summary = summary(reg_TV.Sales)
 
-# summary of estimate, SE, t-stat, and p-value
-reg_short_summary = tidy(reg_TV.Sales)
-
 # quality indices
 r_squared = reg_full_summary$r.squared
 f_stat = as.numeric(reg_full_summary$fstatistic[1])
@@ -37,7 +30,10 @@ reg_quality = rbind(r_squared, f_stat, rse)
 colnames(reg_quality) = c("Value")
 
 # Save Regression Objects
-save(reg_TV.Sales, reg_full_summary, reg_short_summary, reg_quality, file = "../data/regression.RData")
+save(reg_TV.Sales, 
+     reg_full_summary, 
+     reg_quality, 
+     file = "../data/regression.RData")
 
 
 ########## Plotting Data and Regression Line ##########
@@ -62,10 +58,7 @@ scatterplot
 ########## Saving and Exporting ##########
 # Save Plot
 # PDF
-pdf("../images/scatterplot-tv-sales.pdf")  
-scatterplot 
-dev.off() 
+ggsave("../images/scatterplot-tv-sales.pdf", scatterplot)  
 # PNG
-png("../images/scatterplot-tv-sales.png")
-scatterplot
-dev.off()
+ggsave("../images/scatterplot-tv-sales.png", scatterplot)
+

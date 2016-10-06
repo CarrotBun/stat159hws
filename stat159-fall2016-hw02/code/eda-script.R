@@ -2,10 +2,10 @@
 setwd("~/stat159/hw/stat159-fall2016-hw02/code")
 
 # setting up libraries and packages
-install.packages("ggplot2")
-install.packages("reader")
+#install.packages("ggplot2", repos="http://cran.rstudio.com/")
+#install.packages("reader", repos="http://cran.rstudio.com/")
 library(ggplot2)
-library(reader)
+
 data = read.csv("../data/Advertising.csv")
 
 # Summary Statistics Function
@@ -43,26 +43,20 @@ hist_Sales = ggplot(data = data, aes(data$Sales)) +
 
 
 # Save Histograms
-pdf("../images/histogram-tv.pdf")
-hist_TV
-dev.off()
+ggsave("../images/histogram-tv.pdf", plot = hist_TV)
+ggsave("../images/histogram-tv.png", plot = hist_TV)
 
-png("../images/histogram-tv.png")
-hist_TV
-dev.off()
 
-pdf("../images/histogram-sales.pdf")
-hist_Sales
-dev.off()
-
-png("../images/histogram-sales.png")
-hist_Sales
-dev.off()
+ggsave("../images/histogram-sales.pdf", plot = hist_Sales)
+ggsave("../images/histogram-sales.png", plot = hist_Sales)
 
 # Producing eda-output.txt
 sink("../data/eda-output.txt")
-cat("Summary Statistics of TV ads on Sales\n\n")
+cat("Statistics of TV Budgets")
+cat("\n")
 stats_TV
+cat("\n")
+cat("Statistics of Product Sales")
 cat("\n")
 stats_Sales
 sink()
