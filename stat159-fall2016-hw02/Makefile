@@ -18,7 +18,7 @@ regression.RData: regression-script.R Advertising.csv
 	cd code; Rscript regression-script.R
 
 report.pdf: report.Rmd regression.RData scatterplot-tv-sales.png
-	cd report; pandoc report.Rmd -s -o report.pdf
+	cd report; pandoc report.Rmd -s -o Report.pdf
 
 
 

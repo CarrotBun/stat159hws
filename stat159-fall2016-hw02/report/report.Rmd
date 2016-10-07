@@ -25,7 +25,7 @@ Some preliminary analysis of the dataset include:
 -histograms below show the distribution of TV budget and sales data  
   
   
-Figure 1: Distributions of TV Budget and Sales Data  
+#### Figure 1: Distributions of TV Budget and Sales Data  
 ```{r fig.width=3, fig.height=20, echo=FALSE, fig.align = "center"}
 library(png)
 library(grid)
@@ -50,28 +50,34 @@ To estimate the coefficients $\beta_0$ and $\beta_1$, we use the least squares m
 #install.packages("xtable")
 library(xtable)
 library(knitr)
-library(stargazer)
 load("../data/regression.RData")
 ```
 After computing the regression, we found the following results:  
-  
-Table 1: Regression Coefficients
+
+#### Table 1: Regression Coefficients
 ```{r, echo = FALSE, results = "asis"}
 print(xtable(summary(reg_TV.Sales)), type = "latex", comment = FALSE)
 ```
   
-Some measurements of quality of regression:  
-  
-Table 2: Regression Quality Statistics  
+#### Table 2: Regression Quality Statistics  
 ```{r, echo = FALSE, results = "asis"}
 print(xtable(reg_quality), type = "latex", comment = F)
 ```
-![](../images/scatterplot-tv-sales.png)  
-Figure 2: Scatterplot of Regression  
+  
+#### Figure 2: Scatterplot of Regression  
+```{r fig.width=4, fig.height=40, echo=FALSE, fig.align = "center"}
+grid.raster(readPNG("../images/scatterplot-tv-sales.png"))
+```
+  
   
   
 ## Conclusions  
-Looking at the scatterplot, sales seems to vary more with a higher TV budget and when budget is near 0, sales seem to grow expoentially with TV budget. 
+Looking at the *TV* regression coefficent in **Table 1** shows a positive relationship with *sales*. In fact, 1% increase in *TV* budget is associated with 4.75% increase in *sales*. The t statistic of this coefficient is so large that the p-value is less than 4 decimal places of 0. This coefficient is statistically significant.  
+
+The R squared in **Table 2** shows that 61% of the variation in sales is explained by the variation in TV budget.   
+
+However, looking at the scatterplot (**Figure 2**), sales seems to vary more with a higher TV budget and when budget is near 0, sales seem to grow expoentially with TV budget. The data is not homoscedastic and other types of regression might be worth exploring.   
+
 
 
 
