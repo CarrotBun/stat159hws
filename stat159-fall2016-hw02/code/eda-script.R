@@ -1,6 +1,3 @@
-# set working directory
-setwd("~/stat159/hw/stat159-fall2016-hw02/code")
-
 # setting up libraries and packages
 #install.packages("ggplot2", repos="http://cran.rstudio.com/")
 #install.packages("reader", repos="http://cran.rstudio.com/")
@@ -52,11 +49,11 @@ ggsave("../images/histogram-sales.png", plot = hist_Sales)
 
 # Producing eda-output.txt
 sink("../data/eda-output.txt")
-cat("Statistics of TV Budgets")
+cat("Statistics of TV Budget")
 cat("\n")
 stats_TV
 cat("\n")
-cat("Statistics of Product Sales")
+cat("Statistics of Sales")
 cat("\n")
 stats_Sales
 sink()

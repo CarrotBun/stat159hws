@@ -1,6 +1,3 @@
-# set working directory
-setwd("~/stat159/hw/stat159-fall2016-hw02/code")
-
 # load necessary packages and libraries
 #install.packages("ggplot2", repos="http://cran.rstudio.com/")
 #install.packages("reader", repos="http://cran.rstudio.com/")
@@ -8,14 +5,12 @@ setwd("~/stat159/hw/stat159-fall2016-hw02/code")
 library(ggplot2)
 #library(stats)
 
-
 # read data
 data = read.csv("../data/Advertising.csv")
 
 ########## Regression Analysis ##########
 # simple linear regression of TV advertising on Sales
 reg_TV.Sales = lm(Sales~TV, data = data)
-
 
 ########## Regression Summary ##########
 # full regression summary with 5 summary statistics
