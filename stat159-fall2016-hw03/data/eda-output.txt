@@ -2,6 +2,31 @@ Statistics of TV Budget
       Mean       SD Median Min   Max   N
 1 147.0425 85.85424 149.75 0.7 296.4 200
 
+Statistics of Radio
+    Mean       SD Median Min  Max   N
+1 23.264 14.84681   22.9   0 49.6 200
+
+Statistics of Newspaper
+    Mean       SD Median Min Max   N
+1 30.554 21.77862  25.75 0.3 114 200
+
 Statistics of Sales
      Mean       SD Median Min Max   N
 1 14.0225 5.217457   12.9 1.6  27 200
+
+Correlation Matrix
+                    X         TV       Radio   Newspaper       Sales
+X          1.00000000 0.01771469 -0.11068044 -0.15494414 -0.05161625
+TV         0.01771469 1.00000000  0.05480866  0.05664787  0.78222442
+Radio     -0.11068044 0.05480866  1.00000000  0.35410375  0.57622257
+Newspaper -0.15494414 0.05664787  0.35410375  1.00000000  0.22829903
+Sales     -0.05161625 0.78222442  0.57622257  0.22829903  1.00000000
+
+Binary Correlation Matrix
+           X TV Radio Newspaper Sales
+X          1  1    -1        -1    -1
+TV         1  1     1         1     1
+Radio     -1  1     1         1     1
+Newspaper -1  1     1         1     1
+Sales     -1  1     1         1     1
+
