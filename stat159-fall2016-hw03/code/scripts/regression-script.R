@@ -1,39 +1,49 @@
-# load necessary packages and libraries
-#install.packages("ggplot2", repos="http://cran.rstudio.com/")
-#install.packages("reader", repos="http://cran.rstudio.com/")
-
 library(ggplot2)
-#library(stats)
 
-# read data
+# Download CSV Data ==============================================
 data = read.csv("../data/Advertising.csv")
 
-########## Regression Analysis ##########
-# simple linear regression of TV advertising on Sales
+
+# Regression Analysis ============================================
+#### simple linear regression of TV advertising on Sales ####
 reg_TV.Sales = lm(Sales~TV, data = data)
 
-########## Regression Summary ##########
-# full regression summary with 5 summary statistics
-reg_full_summary = summary(reg_TV.Sales)
+#### simple linear regression of Radio advertising on Sales ####
+reg_Radio.Sales = lm(Sales~Radio, data = data)
+
+#### simple linear regression of Newspaper advertising on Sales ####
+reg_Newspaper.Sales = lm(Sales~Newspaper, data = data)
+
+#### multiple regression of TV, Radio, Newspaper on Sales ####
+reg_All.Sales = lm(Sales~TV + Radio + Newspaper, data = data)
+
+
+# Regression Summary ==============================================
+#### simple linear regression summary with 5 summary statistics ####
+reg_TV_summary = summary(reg_TV.Sales)
+reg_Radio_summary = summary(reg_Radio.Sales)
+reg_Newspaper_summary = summary(reg_Newspaper.Sales)
+
+#### multiple regression summary with 5 summary statistics ####
+reg_mul_summary = summary(reg_All.Sales)
 
 # quality indices
-r_squared = reg_full_summary$r.squared
-f_stat = as.numeric(reg_full_summary$fstatistic[1])
-rse = reg_full_summary$sigma
+reg_RSS_TV.Sales = residual_sum_squares(reg_TV.Sales)
+reg_TSS_TV.Sales = total_sum_squares(reg_TV.Sales)
 
-reg_quality = rbind(r_squared, f_stat, rse)
-colnames(reg_quality) = c("Value")
+reg_RSS_Radio.Sales = residual_sum_squares(reg_Radio.Sales)
+reg_RSS_Newspaper.Sales = residual_sum_squares(reg_Newspaper.Sales)
+
 
 # Save Regression Objects
-save(reg_TV.Sales, 
-     reg_full_summary, 
-     reg_quality, 
-     file = "../data/regression.RData")
+save(,file = "../../data/regression.RData")
 
 
-########## Plotting Data and Regression Line ##########
+# Plotting Data and Regression Line ===============================
 # add fitted vaules into "data" dataframe
-data = transform(data, fitted = fitted(reg_TV.Sales))
+data = transform(data, fitted_TV.Sales = fitted(reg_TV.Sales))
+data = transform(data, fitted_Radio.Sales = fitted(reg_Radio.Sales))
+data = transform(data, fitted_Newspaper.Sales = fitted(reg_Newspaper.Sales))
 
 # plot
 scatterplot = ggplot(data = data, aes(x = data$TV, y = data$Sales)) + 
@@ -46,14 +56,10 @@ scatterplot = ggplot(data = data, aes(x = data$TV, y = data$Sales)) +
   geom_segment(aes(x = data$TV, y = data$Sales, # add residual lines
                    xend = data$TV, yend = data$fitted,
                    color = "gray"))
-# call on plot
-scatterplot
 
 
 ########## Saving and Exporting ##########
 # Save Plot
-# PDF
-ggsave("../images/scatterplot-tv-sales.pdf", scatterplot)  
 # PNG
 ggsave("../images/scatterplot-tv-sales.png", scatterplot)
 

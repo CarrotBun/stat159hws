@@ -63,7 +63,7 @@ hist_Sales = ggplot(data = data, aes(data$Sales)) +
 
 # Save Files =====================================================
 # Save Binary Correlation Matrix
-save(corr_binary_matrix, file = "../../data/correlation-matrix.RData")
+save(corr_matrix, file = "../../data/correlation-matrix.RData")
 
 # Save Charts
 ggsave("../../images/histogram-tv.png", plot = hist_TV)
