@@ -14,30 +14,58 @@ context("Test for residual sum of squares value")
 
 test_that("RSS works as expected", {
   x = reg
-  
-  expect_equal(residual_sum_squares(x), 4)
+  expect_equal(residual_sum_squares(x), sum(reg$residuals^2))
   expect_length(residual_sum_squares(x), 1)
   expect_type(residual_sum_squares(x), 'double')
 })
 
 
-test_that("RSS works as expected", {
-  y <- c(1, 2, 3, 4, NA)
-  
-  expect_equal(range_value(y), 3)
-  expect_length(range_value(y), 1)
+# context with one test that groups expectations
+context("Test for total sums of squares value") 
+
+test_that("TSS works as expected", {
+  x = reg
+  expect_equal(total_sum_squares(x), sum((mtcars$mpg - mean(mtcars$mpg))^2))
+  expect_length(total_sum_squares(x), 1)
+  expect_type(total_sum_squares(x), 'double')
 })
 
-test_that("RSS works as expected", {
-  z <- c(TRUE, FALSE, TRUE)
-  
-  expect_equal(range_value(z), 1L)
-  expect_length(range_value(z), 1)
-  expect_type(range_value(z), 'integer')
+
+# context with one test that groups expectations
+context("Test for residual sum of errors value") 
+
+test_that("RSE works as expected", {
+  x = reg
+  expect_equal(residual_std_error(x), regsum$sigma)
+  expect_length(residual_std_error(x), 1)
+  expect_type(residual_std_error(x), 'double')
 })
 
-test_that("RSS works as expected", {
-  w <- letters[1:5]
-  
-  expect_error(range_value(w), 'non-numeric argument to binary operator')
+
+# context with one test that groups expectations
+context("Test for r squared value") 
+
+test_that("r squared works as expected", {
+  x = reg
+  expect_equal(r_squared(x), regsum$r.squared)
+  expect_length(r_squared(x), 1)
+  expect_type(r_squared(x), 'double')
 })
+
+
+# context with one test that groups expectations
+context("Test for f statistic value") 
+
+test_that("f statistic works as expected", {
+  x = reg
+  expect_equal(f_statistic(x), regsum$fstatistic[1])
+  expect_length(f_statistic(x), 1)
+  expect_type(f_statistic(x), 'double')
+})
+
+
+
+
+
+
+
