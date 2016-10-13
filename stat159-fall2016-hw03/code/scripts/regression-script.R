@@ -1,5 +1,6 @@
 library(ggplot2)
 source("../functions/regression-functions.R")
+
 # Download CSV Data ==============================================
 data = read.csv("../data/Advertising.csv")
 

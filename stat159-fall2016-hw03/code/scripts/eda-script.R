@@ -26,7 +26,7 @@ corr_matrix = cor(data)
 scatterplot_matrix = splom(data)
 corr_binary_matrix = corr_matrix
 corr_binary_matrix[corr_binary_matrix > 0] = 1
-corr_binary_matrix[corr_binary_matrix < 0] = -1
+corr_binary_matrix[corr_binary_matrix < 0]f = -1
 
 # Histograms ======================================================
 # Histogram for TVs 
