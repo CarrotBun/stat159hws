@@ -1,3 +1,6 @@
+library(ggplot2)
+library(lattice)
+
 # Producing session-info.txt
 sink("../../session-info.txt")
 cat("\n")
