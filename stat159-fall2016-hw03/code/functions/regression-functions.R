@@ -29,5 +29,8 @@ f_statistic = function(object){
 
 residual_std_error = function(object){
   # calculates the residual stadard error by taking an lm object as input and returns a numeric RSE
-  
+  n = nrow(object$model)
+  p = length(object$coefficients) - 1
+  RSS = residual_sum_squares(object)
+  return(((1/(n - p - 1))*RSS)^(1/2))
 }
