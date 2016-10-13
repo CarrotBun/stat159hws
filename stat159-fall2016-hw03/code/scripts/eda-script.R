@@ -22,9 +22,7 @@ stats_Newspaper = my.summary(data$Newspaper)
 stats_Sales = my.summary(data$Sales)
 
 # Correlation Matrix =============================================
-corr_matrix = cor(data)
-scatterplot_matrix = splom(data)
-corr_binary_matrix = corr_matrix
+corr_binary_matrix = cor(data)
 corr_binary_matrix[corr_binary_matrix > 0] = 1
 corr_binary_matrix[corr_binary_matrix < 0]f = -1
 
@@ -63,14 +61,14 @@ hist_Sales = ggplot(data = data, aes(data$Sales)) +
 
 # Save Files =====================================================
 # Save Binary Correlation Matrix
-save(corr_matrix, file = "../../data/correlation-matrix.RData")
+save(corr_binary_matrix, file = "../../data/correlation-matrix.RData")
 
 # Save Charts
 ggsave("../../images/histogram-tv.png", plot = hist_TV)
 ggsave("../../images/histogram-radio.png", plot = hist_Radio)
 ggsave("../../images/histogram-newspaper.png", plot = hist_Newspaper)
 ggsave("../../images/histogram-sales.png", plot = hist_Sales)
-ggsave("../../images/scatterplot-matrix.png", plot = scatterplot_matrix)
+ggsave("../../images/scatterplot-matrix.png", plot = pairs(data))
 
 # eda-output.txt output ===========================================
 # Producing eda-output.txt
