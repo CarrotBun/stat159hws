@@ -8,4 +8,4 @@ Lyx
 Git
 
 Packages Used:
-ggplot2, lattice
+ggplot2, lattice, png, grid, pander, knitr
