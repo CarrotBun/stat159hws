@@ -47,28 +47,55 @@ To estimate the coefficients $\beta_0$ and $\beta_1$, we use the least squares m
   
 ## Results
 ```{r, echo = FALSE}
-#install.packages("xtable")
-library(xtable)
 library(knitr)
 load("../data/regression.RData")
+load("../data/correlation-matrix.RData")
+library(pander)
+panderOptions('round', 4)
+panderOptions('keep.trailing.zeros', TRUE)
 ```
 After computing the regression, we found the following results:  
 
-#### Table 1: Regression Coefficients
-```{r, echo = FALSE, results = "asis"}
-print(xtable(summary(reg_TV.Sales)), type = "latex", comment = FALSE)
-```
   
-#### Table 2: Regression Quality Statistics  
-```{r, echo = FALSE, results = "asis"}
-print(xtable(reg_quality), type = "latex", comment = F)
+#### Table 1: TV Regression Coefficients
+```{r, echo = FALSE}
+pander(reg_TV.Sales)
 ```
-  
-#### Figure 2: Scatterplot of Regression  
+
+#### Figure 1: Scatterplot of TV Regression  
 ```{r fig.width=4, fig.height=40, echo=FALSE, fig.align = "center"}
 grid.raster(readPNG("../images/scatterplot-tv-sales.png"))
 ```
   
+#### Table 2: Radio Regression Coefficients
+```{r, echo = FALSE}
+pander(reg_Radio.Sales)
+```
+
+#### Figure 2: Scatterplot of Radio Regression  
+```{r fig.width=4, fig.height=40, echo=FALSE, fig.align = "center"}
+grid.raster(readPNG("../images/scatterplot-radio-sales.png"))
+```
+  
+#### Table 3: Newspaper Regression Coefficients
+```{r, echo = FALSE}
+pander(reg_Newspaper.Sales)
+```
+
+#### Figure 3: Scatterplot of Newspaper Regression  
+```{r fig.width=4, fig.height=40, echo=FALSE, fig.align = "center"}
+grid.raster(readPNG("../images/scatterplot-newspaper-sales.png"))
+```
+  
+#### Table 4: Multiple Regression Coefficients
+```{r, echo = FALSE}
+pander(reg_All.Sales)
+```
+  
+#### Table x: Regression Quality Statistics  
+```{r, echo = FALSE}
+pander(reg_quality)
+```
   
   
 ## Conclusions  
