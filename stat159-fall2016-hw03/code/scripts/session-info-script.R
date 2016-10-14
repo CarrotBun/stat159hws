@@ -1,5 +1,7 @@
 library(ggplot2)
 library(lattice)
+library(png)
+library(grid)
 
 # Producing session-info.txt
 sink("../../session-info.txt")
@@ -22,7 +24,7 @@ cat("\n")
 cat("\n")
 cat("Packages Used:")
 cat("\n")
-cat("ggplot2, lattice")
+cat("ggplot2, lattice, png, grid")
 cat("\n")
 sink()
 
