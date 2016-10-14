@@ -19,11 +19,7 @@ r_squared = function(object){
   
 f_statistic = function(object){
   # calculates the F stat by taking an lm object as input and returns a numeric F stat
-  n = nrow(object$model)
-  p = length(object$coefficients) - 1
-  TSS = total_sum_squares(object)
-  RSS = residual_sum_squares(object)
-  return (sum((TSS-RSS)/p)/(RSS/(n-p-1)))
+  return (summary(object)$fstatistic[1])
   
 }
 
