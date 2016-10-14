@@ -1,7 +1,8 @@
 #Code Folder  
 
-This folder contains eda-script.R and regression-script.R  
+This folder contains folders functions, tests, and scripts.  
+Functions: contains regression-functions.R which contains functions used in regression-script.R
+Tests: contains all the tests for 
+Scripts: contains all the R scripts used for data analysis and information output
 
-eda-script.R: this is an R script file containing R code for importing the data, computing summary statistics and histograms for TV ads and Sales from Advertising.csv  
 
-regression-script.R: this is an R script file containing R code for importing the data, computing regression analysis for TV ads and Sales from Advertising.csv  
