@@ -65,7 +65,7 @@ data = transform(data, fitted_Radio.Sales = fitted(reg_Radio.Sales))
 data = transform(data, fitted_Newspaper.Sales = fitted(reg_Newspaper.Sales))
 data = transform(data, fitted_All.Sales = fitted(reg_All.Sales))
 
-# plot
+# scatter plots
 scatter_TV = ggplot(data = data, aes(x = data$TV, y = data$Sales)) + 
   geom_point(aes(colour="#CC0000")) + # plot as points (scatterplot)
   theme(legend.position = "none") + # remove unnecessary legend
@@ -99,12 +99,12 @@ scatter_Newspaper = ggplot(data = data, aes(x = data$Newspaper, y = data$Sales))
                    xend = data$Newspaper, yend = data$fitted_Newspaper.Sales,
                    color = "gray"))
 
-resid.fitted_All = ggplot(aes(x = as.numeric(data$fitted_All.Sales), y = as.numeric(reg_mul_summary$residuals))) + 
-  geom_point(aes(colour="#CC0000")) + # plot as points (scatterplot)
-  theme(legend.position = "none") + # remove unnecessary legend
-  ggtitle("Plot of Multiple Regression Resids and Fitted Values") +
-  xlab("fitted values") +
-  ylab("residuals")
+# multiple regression resids vs. fitted values
+plot(reg_All.Sales, which = 1)
+# multiple regression scale location
+plot(reg_All.Sales, which = 3)
+# normal QQ plot
+plot(reg_All.Sales, which = 2)
 
 
 # Saving and Exporting ==============================================
@@ -113,4 +113,3 @@ resid.fitted_All = ggplot(aes(x = as.numeric(data$fitted_All.Sales), y = as.nume
 ggsave("../../images/scatterplot-tv-sales.png", scatter_TV)
 ggsave("../../images/scatterplot-radio-sales.png", scatter_Radio)
 ggsave("../../images/scatterplot-newspaper-sales.png", scatter_Newspaper)
-
