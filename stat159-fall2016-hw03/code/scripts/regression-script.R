@@ -2,7 +2,7 @@ library(ggplot2)
 source("../functions/regression-functions.R")
 
 # Download CSV Data ==============================================
-data = read.csv("../data/Advertising.csv")
+data = read.csv("../../data/Advertising.csv")
 
 
 # Regression Analysis ============================================
@@ -33,6 +33,8 @@ reg_RSS_TV.Sales = residual_sum_squares(reg_TV.Sales)
 reg_TSS_TV.Sales = total_sum_squares(reg_TV.Sales)
 
 reg_RSS_Radio.Sales = residual_sum_squares(reg_Radio.Sales)
+
+
 reg_RSS_Newspaper.Sales = residual_sum_squares(reg_Newspaper.Sales)
 
 
