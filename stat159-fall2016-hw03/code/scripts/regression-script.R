@@ -69,7 +69,7 @@ rownames(reg_quality) = c("TV", "Radio", "Newspaper", "Multiple")
 save(reg_TV.Sales, reg_Radio.Sales, 
      reg_Newspaper.Sales, reg_All.Sales, 
      reg_TV_summary, reg_Radio_summary, 
-     reg_Newspaper_summary, reg_mul_summary,
+     reg_Newspaper_summary, reg_mul_summary, reg_quality,
      file = "../../data/regression.RData")
 
 
