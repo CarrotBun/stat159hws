@@ -49,6 +49,21 @@ reg_RSS_All.Sales = residual_sum_squares(reg_All.Sales)
 reg_rsquared_All.Sales = r_squared(reg_All.Sales)
 reg_Fstat_All.Sales = f_statistic(reg_All.Sales)
 
+reg_quality = rbind(c(reg_RSS_TV.Sales, 
+                      reg_rsquared_TV.Sales, 
+                      reg_Fstat_TV.Sales),
+                    c(reg_RSS_Radio.Sales, 
+                      reg_rsquared_Radio.Sales, 
+                      reg_Fstat_Radio.Sales),
+                    c(reg_RSS_Newspaper.Sales, 
+                      reg_rsquared_Newspaper.Sales, 
+                      reg_Fstat_Newspaper.Sales),
+                    c(reg_RSS_All.Sales, 
+                      reg_rsquared_All.Sales, 
+                      reg_Fstat_All.Sales))
+
+colnames(reg_quality) = c("RSS", "R Square", "F Stat")
+rownames(reg_quality) = c("TV", "Radio", "Newspaper", "Multiple")
 
 # Save Regression Objects
 save(reg_TV.Sales, reg_Radio.Sales, 

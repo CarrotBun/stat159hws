@@ -9,7 +9,7 @@ This reports attempts to reproduce the results of advertising and sales found in
   
   
 ## Introduction  
-The Advertising dataset contains data on sales (in thousands of units) for a particular product as a function of advertising budgets (in thousands of dollars) for TV, radio, and newspaper media. The goal is to suggest, on the basis of this data, a marketing plan for next year that will results in high product sales. In this report, we will focus specifcally on the TV budget and its relationship with sales. Some questions we would like to explore include:      
+The Advertising dataset contains data on sales (in thousands of units) for a particular product as a function of advertising budgets (in thousands of dollars) for TV, radio, and newspaper media. The goal is to suggest, on the basis of this data, a marketing plan for next year that will results in high product sales. In this report, we will focus how TV, radio, and newspaper budgets and their individual as well as combined relationship with sales. Some questions we would like to explore include:      
   
 1. What are the average TV ads budget and average sales in this dataset?  
 2. Is there a relationship between TV ads budget and sales?  
@@ -18,24 +18,24 @@ The Advertising dataset contains data on sales (in thousands of units) for a par
   
   
 ## Data  
-This dataset has information on TV, Radio, and Newspaper budgets. On this paper, we will focus on the relationship between *TV budget* and *product sales*.  
+This dataset has information on TV, Radio, and Newspaper budgets.    
 Some preliminary analysis of the dataset include:  
   
--there are 200 observations of each TV budget and sales  
--histograms below show the distribution of TV budget and sales data  
+-there are 200 observations of each TV, radio, newspaper, and sales  
+-histograms below show the distributions of TV, radio, newspaper, and sales data  
   
   
 #### Figure 1: Distributions of TV Budget and Sales Data  
 ```{r fig.width=3, fig.height=20, echo=FALSE, fig.align = "center"}
 library(png)
 library(grid)
-histogram_tv <- readPNG("../images/histogram-tv.png")
-grid.raster(histogram_tv)
+grid.raster(readPNG("../images/histogram-tv.png"))
+grid.raster(readPNG("../images/histogram-radio.png"))
+grid.raster(readPNG("../images/histogram-newspaper.png"))
 ```
 
 ```{r fig.width=3, fig.height=20, echo=FALSE, fig.align = "center"}
-histogram_sales <- readPNG("../images/histogram-sales.png")
-grid.raster(histogram_sales)
+grid.raster(readPNG("../images/histogram-sales.png"))
 ```
 
 
