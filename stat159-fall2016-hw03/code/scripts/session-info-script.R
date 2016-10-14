@@ -2,6 +2,8 @@ library(ggplot2)
 library(lattice)
 library(png)
 library(grid)
+library(knitr)
+library(pander)
 
 # Producing session-info.txt
 sink("../../session-info.txt")
@@ -24,7 +26,7 @@ cat("\n")
 cat("\n")
 cat("Packages Used:")
 cat("\n")
-cat("ggplot2, lattice, png, grid")
+cat("ggplot2, lattice, png, grid, pander, knitr")
 cat("\n")
 sink()
 
