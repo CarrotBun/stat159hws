@@ -22,9 +22,8 @@ stats_Newspaper = my.summary(data$Newspaper)
 stats_Sales = my.summary(data$Sales)
 
 # Correlation Matrix =============================================
-corr_binary_matrix = cor(data)
-corr_binary_matrix[corr_binary_matrix > 0] = 1
-corr_binary_matrix[corr_binary_matrix < 0]f = -1
+corr_matrix = cor(data)
+corr_matrix = corr_matrix[2:5, 2:5]
 
 # Histograms ======================================================
 # Histogram for TVs 
@@ -61,7 +60,7 @@ hist_Sales = ggplot(data = data, aes(data$Sales)) +
 
 # Save Files =====================================================
 # Save Binary Correlation Matrix
-save(corr_binary_matrix, file = "../../data/correlation-matrix.RData")
+save(corr_matrix, file = "../../data/correlation-matrix.RData")
 
 # Save Charts
 ggsave("../../images/histogram-tv.png", plot = hist_TV)
