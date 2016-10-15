@@ -1,0 +1,11 @@
+
+Software Programs and Versions:
+OS Mac Sierra
+R version 3.3.1
+Rstudio Version 0.99.893
+Pandoc
+Lyx
+Git
+
+Packages Used:
+ggplot2, lattice, png, grid, pander, knitr, rmarkdown
