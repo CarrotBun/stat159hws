@@ -9,6 +9,7 @@ library(knitr)
 library(pander)
 library(png)
 library(grid)
+library(rmarkdown)
 load("../data/regression.RData")
 load("../data/correlation-matrix.RData")
 panderOptions('round', 4)
@@ -59,7 +60,7 @@ grid.raster(readPNG("../images/scatterplot-matrix.png"))
 ```
 
 #### Figure 3: Correlation among the Variables Quantitative
-```{r}
+```{r, echo = FALSE}
 pander(corr_matrix)
 ```
 
@@ -132,6 +133,10 @@ The multiple regression model has an r squared of `reg_mul_summary$r.squared` me
 
 4. How accurate is the prediction?  
 Accuracy is difficult to say with the limitations of this specific report. Cross validation and accuracy proportions would be explored. 
+
+```{r}
+render(input = "report.Rmd", output_format = "pdf_document", output_file = "report.pdf")
+```
 
 
 
