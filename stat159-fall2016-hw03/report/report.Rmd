@@ -4,6 +4,17 @@ author: "Lily Li"
 date: "October 7, 2016"
 output: pdf_document
 ---
+```{r, echo = FALSE}
+library(knitr)
+library(pander)
+library(png)
+library(grid)
+load("../data/regression.RData")
+load("../data/correlation-matrix.RData")
+panderOptions('round', 4)
+panderOptions('keep.trailing.zeros', TRUE)
+```
+
 ## Abstract  
 This reports attempts to reproduce the results of advertising and sales found in section 3.1 Simple Linear Regression of [*An Introduction to Statistical Learning*](http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Sixth%20Printing.pdf). 
   
@@ -11,10 +22,10 @@ This reports attempts to reproduce the results of advertising and sales found in
 ## Introduction  
 The Advertising dataset contains data on sales (in thousands of units) for a particular product as a function of advertising budgets (in thousands of dollars) for TV, radio, and newspaper media. The goal is to suggest, on the basis of this data, a marketing plan for next year that will results in high product sales. In this report, we will focus how TV, radio, and newspaper budgets and their individual as well as combined relationship with sales. Some questions we would like to explore include:      
   
-1. What are the average TV ads budget and average sales in this dataset?  
-2. Is there a relationship between TV ads budget and sales?  
-3. How strong is the relationship?  
-4. Is the relationship linear?  
+1. Is at least one of the predictors useful in predicting the response?  
+2. Do all predictors help to explain the response, or is only a subset of the predictors useful?  
+3. How well does the model fit the data?  
+4. How accurate is the prediction?  
   
   
 ## Data  
@@ -25,12 +36,16 @@ Some preliminary analysis of the dataset include:
 -histograms below show the distributions of TV, radio, newspaper, and sales data  
   
   
-#### Figure 1: Distributions of TV Budget and Sales Data  
+#### Figure 1: Distributions of TV, Radio, Newspaper and Sales Data  
 ```{r fig.width=3, fig.height=20, echo=FALSE, fig.align = "center"}
-library(png)
-library(grid)
 grid.raster(readPNG("../images/histogram-tv.png"))
+```
+
+```{r fig.width=3, fig.height=20, echo=FALSE, fig.align = "center"}
 grid.raster(readPNG("../images/histogram-radio.png"))
+```
+
+```{r fig.width=3, fig.height=20, echo=FALSE, fig.align = "center"}
 grid.raster(readPNG("../images/histogram-newspaper.png"))
 ```
 
@@ -38,24 +53,27 @@ grid.raster(readPNG("../images/histogram-newspaper.png"))
 grid.raster(readPNG("../images/histogram-sales.png"))
 ```
 
+#### Figure 2: Correlation among the Variables  
+```{r echo=FALSE, fig.align = "center"}
+grid.raster(readPNG("../images/scatterplot-matrix.png"))
+```
+
+#### Figure 3: Correlation among the Variables Quantitative
+```{r}
+pander(corr_matrix)
+```
 
 ## Methodology
-We want to observe if there is a linear relationship between TV budget and Sales. Let's consider the regression model: 
-$$Sales = \beta_0 + \beta_1 TV$$   
-To estimate the coefficients $\beta_0$ and $\beta_1$, we use the least squares minimization method. 
+We want to observe if there is a linear relationship between TV, Radio, and Newspaper budget and Sales. Let's consider the regression models: 
+$$Sales = \beta_{0,t} + \beta_{1,t} TV$$
+$$Sales = \beta_{0,r} + \beta_{1,r} Radio$$   
+$$Sales = \beta_{0,n} + \beta_{1,n} Newspaper$$   
+$$Sales = \beta_{0,m} + \beta_{1,m} TV + \beta_{2,m} Radio + \beta_{3,m} Newspaper$$   
+To estimate the coefficients, we use the least squares minimization method. 
 
   
 ## Results
-```{r, echo = FALSE}
-library(knitr)
-load("../data/regression.RData")
-load("../data/correlation-matrix.RData")
-library(pander)
-panderOptions('round', 4)
-panderOptions('keep.trailing.zeros', TRUE)
-```
 After computing the regression, we found the following results:  
-
   
 #### Table 1: TV Regression Coefficients
 ```{r, echo = FALSE}
@@ -92,7 +110,7 @@ grid.raster(readPNG("../images/scatterplot-newspaper-sales.png"))
 pander(reg_All.Sales)
 ```
   
-#### Table x: Regression Quality Statistics  
+#### Table 5: Regression Quality Statistics  
 ```{r, echo = FALSE}
 pander(reg_quality)
 ```
@@ -103,7 +121,18 @@ Looking at the *TV* regression coefficent in **Table 1** shows a positive relati
 
 The R squared in **Table 2** shows that 61% of the variation in sales is explained by the variation in TV budget.   
 
-However, looking at the scatterplot (**Figure 2**), sales seems to vary more with a higher TV budget and when budget is near 0, sales seem to grow expoentially with TV budget. The data is not homoscedastic and other types of regression might be worth exploring.   
+1. Is at least one of the predictors useful in predicting the response?  
+Yes, when running single regressor regressions, each regressor were found to be significant at the 5% level. 
+
+2. Do all predictors help to explain the response, or is only a subset of the predictors useful?  
+Individually, the regressors seem significant. However, when running a multiple regression, which has the highest F stat, the Newspaper regressor seems to have a negative relationship with sales. But this finding should be judged lightly because there's no statistical significance with a pvalue of `reg_mul_summary$coefficients[4,4]`.  
+
+3. How well does the model fit the data?  
+The multiple regression model has an r squared of `reg_mul_summary$r.squared` meaning `100*(reg_mul_summary$r.squared)` of the variation in sales is explained by the variation in TV, radio, and newspaper budget. Compared to the individual models of TV, radio, and newspaper, which has r squared of `reg_TV_summary$r.squared`, `reg_Radio_summary$r.squared`, and `reg_Newspaper_summary$r.squared` (respectively), the multiple regression model has the best variation explaination.  
+
+4. How accurate is the prediction?  
+Accuracy is difficult to say with the limitations of this specific report. Cross validation and accuracy proportions would be explored. 
+
 
 
 
