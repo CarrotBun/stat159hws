@@ -67,9 +67,9 @@ pander(corr_matrix)
 ## Methodology
 We want to observe if there is a linear relationship between TV, Radio, and Newspaper budget and Sales. Let's consider the regression models: 
 $$Sales = \beta_{0,t} + \beta_{1,t} TV$$
-$$Sales = \beta_{0,r} + \beta_{1,r} Radio$$   
-$$Sales = \beta_{0,n} + \beta_{1,n} Newspaper$$   
-$$Sales = \beta_{0,m} + \beta_{1,m} TV + \beta_{2,m} Radio + \beta_{3,m} Newspaper$$   
+$$Sales = \beta_{0,r} + \beta_{1,r} Radio$$
+$$Sales = \beta_{0,n} + \beta_{1,n} Newspaper$$
+$$Sales = \beta_{0,m} + \beta_{1,m} TV + \beta_{2,m} Radio + \beta_{3,m} Newspaper$$  
 To estimate the coefficients, we use the least squares minimization method. 
 
   
@@ -118,23 +118,24 @@ pander(reg_quality)
   
   
 ## Conclusions  
-Looking at the *TV* regression coefficent in **Table 1** shows a positive relationship with *sales*. In fact, 1% increase in *TV* budget is associated with 4.75% increase in *sales*. The t statistic of this coefficient is so large that the p-value is less than 4 decimal places of 0. This coefficient is statistically significant.  
+Looking at the *TV* regression coefficent in *Table 1* shows a positive relationship with *sales*. In fact, 1% increase in *TV* budget is associated with 4.75% increase in *sales*. The t statistic of this coefficient is so large that the p-value is less than 4 decimal places of 0. This coefficient is statistically significant.  
 
-The R squared in **Table 2** shows that 61% of the variation in sales is explained by the variation in TV budget.   
+The R squared in *Table 5* shows that 61% of the variation in sales is explained by the variation in TV budget.   
 
 1. Is at least one of the predictors useful in predicting the response?  
 Yes, when running single regressor regressions, each regressor were found to be significant at the 5% level. 
 
 2. Do all predictors help to explain the response, or is only a subset of the predictors useful?  
-Individually, the regressors seem significant. However, when running a multiple regression, which has the highest F stat, the Newspaper regressor seems to have a negative relationship with sales. But this finding should be judged lightly because there's no statistical significance with a pvalue of `reg_mul_summary$coefficients[4,4]`.  
+Individually, the regressors seem significant. However, when running a multiple regression, which has the highest F stat, the Newspaper regressor seems to have a negative relationship with sales. But this finding should be judged lightly because there's no statistical significance with a pvalue of `r reg_mul_summary$coefficients[4,4]`.  
 
 3. How well does the model fit the data?  
-The multiple regression model has an r squared of `reg_mul_summary$r.squared` meaning `100*(reg_mul_summary$r.squared)` of the variation in sales is explained by the variation in TV, radio, and newspaper budget. Compared to the individual models of TV, radio, and newspaper, which has r squared of `reg_TV_summary$r.squared`, `reg_Radio_summary$r.squared`, and `reg_Newspaper_summary$r.squared` (respectively), the multiple regression model has the best variation explaination.  
+The multiple regression model has an r squared of `r reg_mul_summary$r.squared` meaning `r 100*(reg_mul_summary$r.squared)` of the variation in sales is explained by the variation in TV, radio, and newspaper budget. Compared to the individual models of TV, radio, and newspaper, which has r squared of `r reg_TV_summary$r.squared`, `r reg_Radio_summary$r.squared`, and `r reg_Newspaper_summary$r.squared` (respectively), the multiple regression model has the best variation explaination.  
 
 4. How accurate is the prediction?  
 Accuracy is difficult to say with the limitations of this specific report. Cross validation and accuracy proportions would be explored. 
 
-```{r}
+```{r, echo = FALSE, eval = FALSE}
+# this chunk should only be ran separately (a evalu = FALSE has been put in to prevent such issues) or else will cause infinite loop
 render(input = "report.Rmd", output_format = "pdf_document", output_file = "report.pdf")
 ```
 
